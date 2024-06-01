@@ -42,7 +42,7 @@ module.exports = {
         deployer: {
             default: 0,
         },
-        player: {
+        admin: {
             default: 1,
         },
     },

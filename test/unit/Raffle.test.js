@@ -13,12 +13,15 @@ const { assert, expect } = require("chai");
 
           beforeEach(async function () {
               deployer = (await getNamedAccounts()).deployer;
+            //   console.log(deployer)
               await deployments.fixture(["all"]);
               raffle = await ethers.getContract("Raffle", deployer);
               vrfCoordinatorV2Mock = await ethers.getContract(
                   "VRFCoordinatorV2Mock",
                   deployer
               );
+              console.log(raffle.target)
+            //   console.log(vrfCoordinatorV2Mock)
               raffleEntranceFee = await raffle.getEntranceFee();
               interval = await raffle.getInterval();
           });
@@ -26,6 +29,8 @@ const { assert, expect } = require("chai");
           describe("constructore", async function () {
               it("initializes the raffle correctly", async function () {
                   const raffleState = await raffle.getRaffleState();
+                //   console.log(raffleState)
+                //   console.log(interval)
                   assert.equal(raffleState.toString(), "0");
                   assert.equal(
                       interval.toString(),
